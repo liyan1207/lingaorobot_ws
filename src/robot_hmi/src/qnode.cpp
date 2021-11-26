@@ -16,12 +16,13 @@
 #include <sstream>
 #include "../include/robot_hmi/qnode.hpp"
 
-
 /*****************************************************************************
 ** Namespaces
 *****************************************************************************/
 
 namespace robot_hmi {
+
+enum Except{EXCEP_ZERO, EXCEP_ONE};
 
 /*****************************************************************************
 ** Implementation
@@ -85,10 +86,16 @@ void QNode::sub_image(QString topic_name)
 }
 void QNode::image_callback(const sensor_msgs::ImageConstPtr &msg)
 {
+  QT_TRY{
+
     cv_bridge::CvImagePtr cv_ptr;
-//    cv_ptr=cv_bridge::toCvCopy(msg,msg->encoding);
+    cv_ptr=cv_bridge::toCvCopy(msg,msg->encoding);
     QImage im=Mat2QImage(cv_ptr->image);
     emit image_val(im);
+  }
+  QT_CATCH(Except ex){
+    QT_THROW(ex);
+  }
 }
 QImage QNode::Mat2QImage(cv::Mat const& src)
 {

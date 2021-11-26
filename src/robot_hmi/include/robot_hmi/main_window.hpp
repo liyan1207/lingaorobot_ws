@@ -64,12 +64,24 @@ public Q_SLOTS:
     void slot_sub_image();
     void slot_quick_cmd_clicked();
     void slot_quick_output();
+
+private slots:
+    void on_pushBtn_okx_clicked();
+    void on_pushBtn_okz_clicked();
+    void on_pushBtn_okcamera_clicked();
+    void readBashStandardOutputInfo();
+    void readBashStandardErrorInfo();
+    void writeCmd(QString);
+
 private:
 	Ui::MainWindowDesign ui;
 	QNode qnode;
     CCtrlDashBoard* speed_x_dashBoard;
     CCtrlDashBoard* speed_y_dashBoard;
     QProcess *laser_cmd;
+    QProcess* m_proces_bash;
+    QProcess* proces_bash;
+
 };
 
 }  // namespace robot_hmi

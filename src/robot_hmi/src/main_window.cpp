@@ -13,6 +13,7 @@
 #include <QMessageBox>
 #include <iostream>
 #include "../include/robot_hmi/main_window.hpp"
+#include <QScrollBar>
 
 /*****************************************************************************
 ** Namespaces
@@ -78,6 +79,34 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     connect(ui.pushButton_sub_image,SIGNAL(clicked()),this,SLOT(slot_sub_image()));
 
     connect(ui.laser_btn,SIGNAL(clicked()),this,SLOT(slot_quick_cmd_clicked()));
+
+
+
+    m_proces_bash = new QProcess;
+    m_proces_bash->start("bash");
+    m_proces_bash->waitForStarted();
+    connect(m_proces_bash, SIGNAL(readyReadStandardOutput()), this, SLOT(readBashStandardOutputInfo()));
+    connect(m_proces_bash, SIGNAL(readyReadStandardError()), this, SLOT(readBashStandardErrorInfo()));
+
+    //另开一个终端运行驱动
+    proces_bash = new QProcess;
+    proces_bash->start("bash");
+    proces_bash->waitForStarted();
+    //启动驱动与 IMU、RTK、融合驱动
+    QString strCmd = "roslaunch lingao_gnss robot.launch";
+    proces_bash->write(strCmd.toLocal8Bit() + '\n');//bash执行命令
+
+    //复位升降结构Z轴
+    QString strCmdResetZ = "rosservice call /lingao_base/linear_motion_sys_init \"AxisName: 'z'\"";
+    writeCmd(strCmdResetZ);
+    //复位升降结构X轴
+    QString strCmdResetX = "rosservice call /lingao_base/linear_motion_sys_init \"AxisName: 'x'\"";
+    writeCmd(strCmdResetX);
+    //复位相机
+    QString strCmdResetP = "rosservice call /lingao_base/linear_motion_sys_init \"AxisName: 'p'\"";
+    writeCmd(strCmdResetP);
+
+    //监控x、z轴位置
 
 }
 void MainWindow::slot_quick_cmd_clicked()
@@ -276,4 +305,107 @@ void MainWindow::closeEvent(QCloseEvent *event)
 }
 
 }  // namespace robot_hmi
+
+
+/**
+ * @brief MainWindow::readBashStandardOutputInfo
+ * 读取命令并执行
+ */
+void robot_hmi::MainWindow::readBashStandardOutputInfo()
+{
+  QByteArray cmdout = m_proces_bash->readAllStandardOutput();//读bash执行命令后的输出
+  if(!cmdout.isEmpty()){
+      ui.textEdit_bashmsg->append(QString::fromLocal8Bit(cmdout));//显示输出结果
+  }
+  QScrollBar* scroll = ui.textEdit_bashmsg->verticalScrollBar();
+  scroll->setSliderPosition(scroll->maximum());//光标定位到最后一行
+}
+
+/**
+ * @brief MainWindow::readBashStandardErrorInfo
+ * 读取异常信息
+ */
+void robot_hmi::MainWindow::readBashStandardErrorInfo()
+{
+  QByteArray cmdout = m_proces_bash->readAllStandardError();//读bash执行命令后的错误信息
+  if(!cmdout.isEmpty()){
+      ui.textEdit_bashmsg->append(QString::fromLocal8Bit(cmdout));//显示
+  }
+  QScrollBar* scroll = ui.textEdit_bashmsg->verticalScrollBar();
+  scroll->setSliderPosition(scroll->maximum());//光标定位到最后一行
+}
+
+/**
+ * @brief MainWindow::on_pushBtn_okx_clicked
+ * 设置x轴位置
+ */
+void robot_hmi::MainWindow::on_pushBtn_okx_clicked()
+{
+  QString strCmd = "rosservice call /lingao_base/linear_motion_sys_set \"AxisName: 'x'";
+  writeCmd(strCmd);
+
+  QString strx = ui.spinBox_x->text();
+  strCmd = "distance: ";
+  strCmd.append(strx);
+  writeCmd(strCmd);
+
+  QString strxspeed = ui.spinBox_xspeed->text();
+  strCmd = "speed: ";
+  strCmd.append(strxspeed);
+  strCmd.append("\""); //命令内容
+  writeCmd(strCmd);
+}
+
+/**
+ * @brief MainWindow::on_pushBtn_okz_clicked
+ * 设置z轴位置
+ */
+void robot_hmi::MainWindow::on_pushBtn_okz_clicked()
+{
+  QString strCmd = "rosservice call /lingao_base/linear_motion_sys_set \"AxisName: 'z'";
+  writeCmd(strCmd);
+
+  QString strz = ui.spinBox_z->text();
+  strCmd = "distance: ";
+  strCmd.append(strz);
+  writeCmd(strCmd);
+
+  QString strzspeed = ui.spinBox_zspeed->text();
+  strCmd = "speed: ";
+  strCmd.append(strzspeed);
+  strCmd.append("\""); //命令内容
+  writeCmd(strCmd);
+}
+
+/**
+ * @brief MainWindow::on_pushBtn_okcamera_clicked
+ * 设置相机位置
+ */
+void robot_hmi::MainWindow::on_pushBtn_okcamera_clicked()
+{
+  QString strCmd = "rosservice call /lingao_base/linear_motion_sys_set \"AxisName: 'p'";
+  writeCmd(strCmd);
+
+  QString strcamera = ui.spinBox_camera->text();
+  strCmd = "distance: ";
+  strCmd.append(strcamera);
+  writeCmd(strCmd);
+
+  QString strcameraspeed = ui.spinBox_cameraspeed->text();
+  strCmd = "speed: ";
+  strCmd.append(strcameraspeed);
+  strCmd.append("\""); //命令内容
+  writeCmd(strCmd);
+}
+
+/**
+ * @brief MainWindow::writeCmd
+ * @param strCmd
+ * 执行bash命令
+ */
+void robot_hmi::MainWindow::writeCmd(QString strCmd)
+{
+  ui.textEdit_bashmsg->append("Linux:~$ "+strCmd);//显示命令
+  m_proces_bash->write(strCmd.toLocal8Bit() + '\n');//bash执行命令
+}
 
