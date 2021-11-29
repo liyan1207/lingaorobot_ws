@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1383</width>
-    <height>852</height>
+    <width>1828</width>
+    <height>939</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1910,7 +1910,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1383</width>
+     <width>1828</width>
      <height>28</height>
     </rect>
    </property>
@@ -1927,7 +1927,6 @@
    </widget>
    <addaction name="menu_File"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
   <action name="action_Quit">
    <property name="text">
     <string>&amp;Quit</string>
