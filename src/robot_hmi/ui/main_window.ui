@@ -25,734 +25,157 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget_2">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
-      <widget class="QWidget" name="tab_4">
+      <widget class="QWidget" name="tab_2">
        <attribute name="title">
-        <string>Tab 1</string>
+        <string>机器连接</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_5">
-        <item row="0" column="0">
-         <layout class="QGridLayout" name="gridLayout_3">
-          <item row="0" column="1">
-           <layout class="QHBoxLayout" name="horizontalLayout_10">
-            <item>
-             <spacer name="horizontalSpacer">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_12">
-              <property name="text">
-               <string>电池电量：</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_13">
-              <property name="minimumSize">
-               <size>
-                <width>32</width>
-                <height>32</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>32</width>
-                <height>32</height>
-               </size>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="pixmap">
-               <pixmap>:/images/power.png</pixmap>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QProgressBar" name="progressBar">
-              <property name="minimumSize">
-               <size>
-                <width>100</width>
-                <height>25</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>100</width>
-                <height>25</height>
-               </size>
-              </property>
-              <property name="value">
-               <number>24</number>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_14">
-              <property name="minimumSize">
-               <size>
-                <width>32</width>
-                <height>32</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>32</width>
-                <height>32</height>
-               </size>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="pixmap">
-               <pixmap>:/images/power-v.png</pixmap>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_power_val">
-              <property name="text">
-               <string>00.00V</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item row="1" column="1">
-           <widget class="QTabWidget" name="tabWidget_3">
-            <property name="currentIndex">
-             <number>0</number>
-            </property>
-            <widget class="QWidget" name="tab_6">
-             <attribute name="title">
-              <string>Tab 1</string>
-             </attribute>
-             <layout class="QVBoxLayout" name="verticalLayout_9">
-              <item>
-               <widget class="QFrame" name="frame_3">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <layout class="QVBoxLayout" name="verticalLayout_12">
-                 <item>
-                  <widget class="QGroupBox" name="groupBox_3">
-                   <property name="title">
-                    <string>Ros Master</string>
-                   </property>
-                   <layout class="QVBoxLayout" name="verticalLayout_13">
-                    <item>
-                     <layout class="QVBoxLayout" name="verticalLayout_14">
-                      <item>
-                       <layout class="QVBoxLayout" name="verticalLayout_15">
-                        <item>
-                         <widget class="QLabel" name="label_15">
-                          <property name="frameShape">
-                           <enum>QFrame::StyledPanel</enum>
-                          </property>
-                          <property name="frameShadow">
-                           <enum>QFrame::Raised</enum>
-                          </property>
-                          <property name="text">
-                           <string>Ros Master Url</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QLineEdit" name="line_edit_master">
-                          <property name="text">
-                           <string>http://192.168.1.2:11311/</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QLabel" name="label_16">
-                          <property name="frameShape">
-                           <enum>QFrame::StyledPanel</enum>
-                          </property>
-                          <property name="frameShadow">
-                           <enum>QFrame::Raised</enum>
-                          </property>
-                          <property name="text">
-                           <string>Ros IP</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QLineEdit" name="line_edit_host">
-                          <property name="text">
-                           <string>192.168.1.67</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QLabel" name="label_17">
-                          <property name="frameShape">
-                           <enum>QFrame::StyledPanel</enum>
-                          </property>
-                          <property name="frameShadow">
-                           <enum>QFrame::Raised</enum>
-                          </property>
-                          <property name="text">
-                           <string>Ros Hostname</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QLineEdit" name="line_edit_topic">
-                          <property name="enabled">
-                           <bool>false</bool>
-                          </property>
-                          <property name="text">
-                           <string>unused</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QCheckBox" name="checkbox_use_environment">
-                          <property name="layoutDirection">
-                           <enum>Qt::RightToLeft</enum>
-                          </property>
-                          <property name="text">
-                           <string>Use environment variables</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QCheckBox" name="checkbox_remember_settings">
-                          <property name="layoutDirection">
-                           <enum>Qt::RightToLeft</enum>
-                          </property>
-                          <property name="text">
-                           <string>Remember settings on startup</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <layout class="QHBoxLayout" name="horizontalLayout_11">
-                          <item>
-                           <widget class="QPushButton" name="quit_button">
-                            <property name="sizePolicy">
-                             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-                              <horstretch>0</horstretch>
-                              <verstretch>0</verstretch>
-                             </sizepolicy>
-                            </property>
-                            <property name="text">
-                             <string>Quit</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QPushButton" name="button_connect">
-                            <property name="enabled">
-                             <bool>true</bool>
-                            </property>
-                            <property name="sizePolicy">
-                             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-                              <horstretch>0</horstretch>
-                              <verstretch>0</verstretch>
-                             </sizepolicy>
-                            </property>
-                            <property name="toolTip">
-                             <string>Set the target to the current joint trajectory state.</string>
-                            </property>
-                            <property name="statusTip">
-                             <string>Clear all waypoints and set the target to the current joint trajectory state.</string>
-                            </property>
-                            <property name="text">
-                             <string>Connect</string>
-                            </property>
-                           </widget>
-                          </item>
-                         </layout>
-                        </item>
-                       </layout>
-                      </item>
-                      <item>
-                       <spacer name="verticalSpacer_3">
-                        <property name="orientation">
-                         <enum>Qt::Vertical</enum>
-                        </property>
-                        <property name="sizeHint" stdset="0">
-                         <size>
-                          <width>20</width>
-                          <height>40</height>
-                         </size>
-                        </property>
-                       </spacer>
-                      </item>
-                      <item>
-                       <layout class="QVBoxLayout" name="verticalLayout_16">
-                        <item>
-                         <layout class="QHBoxLayout" name="horizontalLayout_12">
-                          <item>
-                           <widget class="QPushButton" name="pushButton_u">
-                            <property name="text">
-                             <string>u</string>
-                            </property>
-                            <property name="shortcut">
-                             <string>U</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QPushButton" name="pushButton_i">
-                            <property name="text">
-                             <string>i</string>
-                            </property>
-                            <property name="shortcut">
-                             <string>I</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QPushButton" name="pushButton_o">
-                            <property name="text">
-                             <string>o</string>
-                            </property>
-                            <property name="shortcut">
-                             <string>O</string>
-                            </property>
-                           </widget>
-                          </item>
-                         </layout>
-                        </item>
-                        <item>
-                         <layout class="QHBoxLayout" name="horizontalLayout_13">
-                          <item>
-                           <widget class="QPushButton" name="pushButton_j">
-                            <property name="text">
-                             <string>j</string>
-                            </property>
-                            <property name="shortcut">
-                             <string>J</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QCheckBox" name="checkBox_is_all">
-                            <property name="text">
-                             <string>全向轮模式</string>
-                            </property>
-                            <property name="shortcut">
-                             <string>K</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QPushButton" name="pushButton_l">
-                            <property name="text">
-                             <string>l</string>
-                            </property>
-                            <property name="shortcut">
-                             <string>L</string>
-                            </property>
-                           </widget>
-                          </item>
-                         </layout>
-                        </item>
-                        <item>
-                         <layout class="QHBoxLayout" name="horizontalLayout_14">
-                          <item>
-                           <widget class="QPushButton" name="pushButton_n">
-                            <property name="text">
-                             <string>m</string>
-                            </property>
-                            <property name="shortcut">
-                             <string>M</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QPushButton" name="pushButton_m">
-                            <property name="text">
-                             <string>,</string>
-                            </property>
-                            <property name="shortcut">
-                             <string>,</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QPushButton" name="pushButton_br">
-                            <property name="text">
-                             <string>.</string>
-                            </property>
-                            <property name="shortcut">
-                             <string>.</string>
-                            </property>
-                           </widget>
-                          </item>
-                         </layout>
-                        </item>
-                        <item>
-                         <layout class="QHBoxLayout" name="horizontalLayout_15">
-                          <item>
-                           <widget class="QLabel" name="label_18">
-                            <property name="text">
-                             <string>线速度：</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QSlider" name="horizontalSlider_linera">
-                            <property name="maximum">
-                             <number>100</number>
-                            </property>
-                            <property name="value">
-                             <number>0</number>
-                            </property>
-                            <property name="orientation">
-                             <enum>Qt::Horizontal</enum>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QLabel" name="label_linera">
-                            <property name="minimumSize">
-                             <size>
-                              <width>30</width>
-                              <height>0</height>
-                             </size>
-                            </property>
-                            <property name="maximumSize">
-                             <size>
-                              <width>30</width>
-                              <height>16777215</height>
-                             </size>
-                            </property>
-                            <property name="text">
-                             <string>0</string>
-                            </property>
-                           </widget>
-                          </item>
-                         </layout>
-                        </item>
-                        <item>
-                         <layout class="QHBoxLayout" name="horizontalLayout_16">
-                          <item>
-                           <widget class="QLabel" name="label_19">
-                            <property name="text">
-                             <string>角速度：</string>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QSlider" name="horizontalSlider_raw">
-                            <property name="maximum">
-                             <number>100</number>
-                            </property>
-                            <property name="value">
-                             <number>0</number>
-                            </property>
-                            <property name="orientation">
-                             <enum>Qt::Horizontal</enum>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QLabel" name="label_raw">
-                            <property name="minimumSize">
-                             <size>
-                              <width>20</width>
-                              <height>0</height>
-                             </size>
-                            </property>
-                            <property name="maximumSize">
-                             <size>
-                              <width>20</width>
-                              <height>16777215</height>
-                             </size>
-                            </property>
-                            <property name="text">
-                             <string>0</string>
-                            </property>
-                           </widget>
-                          </item>
-                         </layout>
-                        </item>
-                       </layout>
-                      </item>
-                     </layout>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-            <widget class="QWidget" name="tab_7">
-             <attribute name="title">
-              <string>Tab 2</string>
-             </attribute>
-             <widget class="QGroupBox" name="groupBox_4">
-              <property name="geometry">
-               <rect>
-                <x>20</x>
-                <y>40</y>
-                <width>391</width>
-                <height>131</height>
-               </rect>
-              </property>
-              <property name="title">
-               <string>激光雷达</string>
-              </property>
-              <widget class="QPushButton" name="laser_btn">
-               <property name="geometry">
-                <rect>
-                 <x>20</x>
-                 <y>100</y>
-                 <width>111</width>
-                 <height>25</height>
-                </rect>
+       <widget class="QGroupBox" name="groupBox_3">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>10</y>
+          <width>381</width>
+          <height>371</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Ros Master</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_13">
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_14">
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_15">
+             <item>
+              <widget class="QLabel" name="label_15">
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
                </property>
                <property name="text">
-                <string>打开激光雷达</string>
+                <string>Ros Master Url</string>
                </property>
               </widget>
-              <widget class="QTextEdit" name="textEdit_laser_cmd">
-               <property name="geometry">
-                <rect>
-                 <x>20</x>
-                 <y>30</y>
-                 <width>301</width>
-                 <height>51</height>
-                </rect>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="line_edit_master">
+               <property name="text">
+                <string>http://192.168.1.2:11311/</string>
                </property>
               </widget>
-             </widget>
-             <widget class="QTextEdit" name="textEdit_quick_output">
-              <property name="geometry">
-               <rect>
-                <x>20</x>
-                <y>280</y>
-                <width>391</width>
-                <height>111</height>
-               </rect>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background:rgb(0, 0, 0)
-</string>
-              </property>
-             </widget>
-            </widget>
-           </widget>
-          </item>
-          <item row="0" column="0" rowspan="2">
-           <widget class="QTabWidget" name="tab_manager">
-            <property name="minimumSize">
-             <size>
-              <width>100</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="locale">
-             <locale language="English" country="Australia"/>
-            </property>
-            <property name="currentIndex">
-             <number>0</number>
-            </property>
-            <widget class="QWidget" name="tab_status">
-             <attribute name="title">
-              <string>Ros Communications</string>
-             </attribute>
-             <layout class="QVBoxLayout" name="verticalLayout_17">
-              <item>
-               <layout class="QVBoxLayout" name="verticalLayout_18">
-                <item>
-                 <layout class="QGridLayout" name="gridLayout_4">
-                  <item row="1" column="2">
-                   <widget class="QLabel" name="label_20">
-                    <property name="text">
-                     <string>Y轴线速度</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="1">
-                   <widget class="QLabel" name="label_dir_x">
-                    <property name="text">
-                     <string>正向</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="2" colspan="2">
-                   <widget class="QWidget" name="widget_speed_y" native="true">
-                    <property name="minimumSize">
-                     <size>
-                      <width>300</width>
-                      <height>300</height>
-                     </size>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="0" colspan="2">
-                   <widget class="QWidget" name="widget_speed_x" native="true">
-                    <property name="minimumSize">
-                     <size>
-                      <width>300</width>
-                      <height>300</height>
-                     </size>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="3">
-                   <widget class="QLabel" name="label_dir_y">
-                    <property name="text">
-                     <string>正向</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_21">
-                    <property name="text">
-                     <string>X轴线速度</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item>
-                 <widget class="QFrame" name="frame_4">
-                  <property name="frameShape">
-                   <enum>QFrame::HLine</enum>
-                  </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Raised</enum>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="verticalSpacer_4">
-                  <property name="orientation">
-                   <enum>Qt::Vertical</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>20</width>
-                    <height>40</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_17">
-                  <item>
-                   <widget class="QGroupBox" name="groupBox_13">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="title">
-                     <string>Logging</string>
-                    </property>
-                    <layout class="QVBoxLayout" name="verticalLayout_19">
-                     <item>
-                      <widget class="QListView" name="view_logging"/>
-                     </item>
-                    </layout>
-                   </widget>
-                  </item>
-                  <item>
-                   <layout class="QHBoxLayout" name="horizontalLayout_18">
-                    <item>
-                     <widget class="QLabel" name="label_image">
-                      <property name="minimumSize">
-                       <size>
-                        <width>200</width>
-                        <height>200</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>200</width>
-                        <height>200</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">border:1px solid black</string>
-                      </property>
-                      <property name="text">
-                       <string>NO IMAGE</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <layout class="QVBoxLayout" name="verticalLayout_20">
-                      <item>
-                       <widget class="QLineEdit" name="lineEdit_image_topic"/>
-                      </item>
-                      <item>
-                       <widget class="QPushButton" name="pushButton_sub_image">
-                        <property name="text">
-                         <string>订阅</string>
-                        </property>
-                       </widget>
-                      </item>
-                     </layout>
-                    </item>
-                   </layout>
-                  </item>
-                 </layout>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <widget class="QWidget" name="widget" native="true"/>
-              </item>
-              <item>
-               <widget class="QLabel" name="label_22">
-                <property name="minimumSize">
-                 <size>
-                  <width>100</width>
-                  <height>100</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>100</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-            <widget class="QWidget" name="tab_8">
-             <attribute name="title">
-              <string>页</string>
-             </attribute>
-            </widget>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_16">
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <property name="text">
+                <string>Ros IP</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="line_edit_host">
+               <property name="text">
+                <string>192.168.1.67</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_17">
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <property name="text">
+                <string>Ros Hostname</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="line_edit_topic">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="text">
+                <string>unused</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkbox_use_environment">
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                <string>Use environment variables</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkbox_remember_settings">
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                <string>Remember settings on startup</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_11">
+               <item>
+                <widget class="QPushButton" name="quit_button">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Quit</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="button_connect">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Set the target to the current joint trajectory state.</string>
+                 </property>
+                 <property name="statusTip">
+                  <string>Clear all waypoints and set the target to the current joint trajectory state.</string>
+                 </property>
+                 <property name="text">
+                  <string>Connect</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
       </widget>
       <widget class="QWidget" name="tab_5">
        <attribute name="title">
@@ -1580,52 +1003,7 @@
              <property name="spacing">
               <number>10</number>
              </property>
-             <item row="5" column="0">
-              <widget class="QLabel" name="label_40">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="font">
-                <font>
-                 <pointsize>16</pointsize>
-                </font>
-               </property>
-               <property name="layoutDirection">
-                <enum>Qt::LeftToRight</enum>
-               </property>
-               <property name="text">
-                <string>      角速度      </string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="0">
-              <widget class="QLabel" name="label_41">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="font">
-                <font>
-                 <pointsize>16</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>线速度</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0" rowspan="2">
+             <item row="2" column="3" rowspan="2">
               <widget class="QPushButton" name="pushButton_5">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1638,7 +1016,221 @@
                </property>
               </widget>
              </item>
-             <item row="1" column="6" rowspan="6">
+             <item row="4" column="3" rowspan="2">
+              <widget class="QPushButton" name="pushButton_6">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>继续</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0" rowspan="4" colspan="3">
+              <widget class="QGroupBox" name="groupBox">
+               <property name="title">
+                <string/>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_2">
+                <item row="0" column="0">
+                 <layout class="QVBoxLayout" name="verticalLayout_16">
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_12">
+                    <item>
+                     <widget class="QPushButton" name="pushButton_u">
+                      <property name="text">
+                       <string>u</string>
+                      </property>
+                      <property name="shortcut">
+                       <string>U</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="pushButton_i">
+                      <property name="text">
+                       <string>i</string>
+                      </property>
+                      <property name="shortcut">
+                       <string>I</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="pushButton_o">
+                      <property name="text">
+                       <string>o</string>
+                      </property>
+                      <property name="shortcut">
+                       <string>O</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_13">
+                    <item>
+                     <widget class="QPushButton" name="pushButton_j">
+                      <property name="text">
+                       <string>j</string>
+                      </property>
+                      <property name="shortcut">
+                       <string>J</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QCheckBox" name="checkBox_is_all">
+                      <property name="text">
+                       <string>全向轮模式</string>
+                      </property>
+                      <property name="shortcut">
+                       <string>K</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="pushButton_l">
+                      <property name="text">
+                       <string>l</string>
+                      </property>
+                      <property name="shortcut">
+                       <string>L</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_14">
+                    <item>
+                     <widget class="QPushButton" name="pushButton_n">
+                      <property name="text">
+                       <string>m</string>
+                      </property>
+                      <property name="shortcut">
+                       <string>M</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="pushButton_m">
+                      <property name="text">
+                       <string>,</string>
+                      </property>
+                      <property name="shortcut">
+                       <string>,</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="pushButton_br">
+                      <property name="text">
+                       <string>.</string>
+                      </property>
+                      <property name="shortcut">
+                       <string>.</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_15">
+                    <item>
+                     <widget class="QLabel" name="label_18">
+                      <property name="text">
+                       <string>线速度：</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QSlider" name="horizontalSlider_linera">
+                      <property name="maximum">
+                       <number>100</number>
+                      </property>
+                      <property name="value">
+                       <number>0</number>
+                      </property>
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_linera">
+                      <property name="minimumSize">
+                       <size>
+                        <width>30</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>30</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>0 cm/s</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_16">
+                    <item>
+                     <widget class="QLabel" name="label_19">
+                      <property name="text">
+                       <string>角速度：</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QSlider" name="horizontalSlider_raw">
+                      <property name="maximum">
+                       <number>100</number>
+                      </property>
+                      <property name="value">
+                       <number>0</number>
+                      </property>
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_raw">
+                      <property name="minimumSize">
+                       <size>
+                        <width>30</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>30</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>0 cm/s</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="2" column="4" rowspan="4">
               <widget class="QGroupBox" name="groupBox_10">
                <property name="title">
                 <string>  传感器状态</string>
@@ -1803,164 +1395,6 @@
                </layout>
               </widget>
              </item>
-             <item row="3" column="0" rowspan="2">
-              <widget class="QPushButton" name="pushButton_6">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="text">
-                <string>继续</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="2" rowspan="4" colspan="2">
-              <widget class="QDial" name="dial">
-               <property name="layoutDirection">
-                <enum>Qt::LeftToRight</enum>
-               </property>
-               <property name="minimum">
-                <number>0</number>
-               </property>
-               <property name="maximum">
-                <number>8</number>
-               </property>
-               <property name="pageStep">
-                <number>1</number>
-               </property>
-               <property name="value">
-                <number>0</number>
-               </property>
-               <property name="sliderPosition">
-                <number>0</number>
-               </property>
-               <property name="tracking">
-                <bool>true</bool>
-               </property>
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="wrapping">
-                <bool>true</bool>
-               </property>
-               <property name="notchesVisible">
-                <bool>false</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="4">
-              <widget class="QLabel" name="label_46">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="font">
-                <font>
-                 <pointsize>16</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>      50   cm/s      </string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="4">
-              <widget class="QLabel" name="label_47">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="font">
-                <font>
-                 <pointsize>16</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>10   cm/s</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="1" colspan="3">
-              <widget class="QSlider" name="horizontalSlider_raw_3">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="font">
-                <font>
-                 <pointsize>16</pointsize>
-                </font>
-               </property>
-               <property name="mouseTracking">
-                <bool>false</bool>
-               </property>
-               <property name="inputMethodHints">
-                <set>Qt::ImhNone</set>
-               </property>
-               <property name="value">
-                <number>50</number>
-               </property>
-               <property name="sliderPosition">
-                <number>50</number>
-               </property>
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="invertedAppearance">
-                <bool>false</bool>
-               </property>
-               <property name="invertedControls">
-                <bool>false</bool>
-               </property>
-               <property name="tickPosition">
-                <enum>QSlider::NoTicks</enum>
-               </property>
-               <property name="tickInterval">
-                <number>0</number>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="1" colspan="3">
-              <widget class="QSlider" name="horizontalSlider_linear">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="font">
-                <font>
-                 <pointsize>16</pointsize>
-                </font>
-               </property>
-               <property name="acceptDrops">
-                <bool>false</bool>
-               </property>
-               <property name="autoFillBackground">
-                <bool>false</bool>
-               </property>
-               <property name="value">
-                <number>10</number>
-               </property>
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-              </widget>
-             </item>
             </layout>
            </widget>
           </item>
@@ -1989,16 +1423,10 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="1" colspan="3">
-         <widget class="QLabel" name="label_48">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
+        <item row="2" column="2">
+         <widget class="QLabel" name="label_54">
           <property name="text">
-           <string>相机数据</string>
+           <string>深度相机1</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -2019,7 +1447,7 @@
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QLabel" name="label_53">
+         <widget class="QLabel" name="label_image1">
           <property name="styleSheet">
            <string notr="true">border:1px solid black</string>
           </property>
@@ -2031,29 +1459,19 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="2">
-         <widget class="QLabel" name="label_56">
-          <property name="styleSheet">
-           <string notr="true">border:1px solid black</string>
+        <item row="0" column="1" colspan="3">
+         <widget class="QLabel" name="label_48">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
           <property name="text">
-           <string/>
+           <string>相机数据</string>
           </property>
           <property name="alignment">
-           <set>Qt::AlignBottom|Qt::AlignHCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="3">
-         <widget class="QLabel" name="label_51">
-          <property name="styleSheet">
-           <string notr="true">border:1px solid black</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+           <set>Qt::AlignCenter</set>
           </property>
          </widget>
         </item>
@@ -2073,23 +1491,16 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="2">
-         <widget class="QLabel" name="label_54">
+        <item row="1" column="2">
+         <widget class="QLabel" name="label_image2">
+          <property name="styleSheet">
+           <string notr="true">border:1px solid black</string>
+          </property>
           <property name="text">
-           <string>深度相机1</string>
+           <string/>
           </property>
           <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="3">
-         <widget class="QLabel" name="label_49">
-          <property name="text">
-           <string>深度相机2</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
+           <set>Qt::AlignBottom|Qt::AlignHCenter</set>
           </property>
          </widget>
         </item>
@@ -2106,6 +1517,16 @@
           </property>
          </widget>
         </item>
+        <item row="2" column="3">
+         <widget class="QLabel" name="label_49">
+          <property name="text">
+           <string>深度相机2</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
         <item row="4" column="1" colspan="3">
          <widget class="QGroupBox" name="groupBox_11">
           <property name="title">
@@ -2113,7 +1534,7 @@
           </property>
           <layout class="QGridLayout" name="gridLayout_15">
            <item row="0" column="0">
-            <widget class="QTextEdit" name="textEdit">
+            <widget class="QListView" name="view_logging">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
                <horstretch>0</horstretch>
@@ -2124,6 +1545,359 @@
            </item>
           </layout>
          </widget>
+        </item>
+        <item row="1" column="3">
+         <widget class="QLabel" name="label_image3">
+          <property name="styleSheet">
+           <string notr="true">border:1px solid black</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_4">
+       <attribute name="title">
+        <string>Tab 1</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="0" column="0">
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="1">
+           <layout class="QHBoxLayout" name="horizontalLayout_10">
+            <item>
+             <spacer name="horizontalSpacer">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_12">
+              <property name="text">
+               <string>电池电量：</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_13">
+              <property name="minimumSize">
+               <size>
+                <width>32</width>
+                <height>32</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>32</width>
+                <height>32</height>
+               </size>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="pixmap">
+               <pixmap>:/images/power.png</pixmap>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QProgressBar" name="progressBar">
+              <property name="minimumSize">
+               <size>
+                <width>100</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>100</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="value">
+               <number>24</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_14">
+              <property name="minimumSize">
+               <size>
+                <width>32</width>
+                <height>32</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>32</width>
+                <height>32</height>
+               </size>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="pixmap">
+               <pixmap>:/images/power-v.png</pixmap>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_power_val">
+              <property name="text">
+               <string>00.00V</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="0" column="0" rowspan="2">
+           <widget class="QTabWidget" name="tab_manager">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="locale">
+             <locale language="English" country="Australia"/>
+            </property>
+            <property name="currentIndex">
+             <number>1</number>
+            </property>
+            <widget class="QWidget" name="tab_status">
+             <attribute name="title">
+              <string>Ros Communications</string>
+             </attribute>
+             <layout class="QVBoxLayout" name="verticalLayout_17">
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_18">
+                <item>
+                 <layout class="QGridLayout" name="gridLayout_4">
+                  <item row="1" column="2">
+                   <widget class="QLabel" name="label_20">
+                    <property name="text">
+                     <string>Y轴线速度</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QLabel" name="label_dir_x">
+                    <property name="text">
+                     <string>正向</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="2" colspan="2">
+                   <widget class="QWidget" name="widget_speed_y" native="true">
+                    <property name="minimumSize">
+                     <size>
+                      <width>300</width>
+                      <height>300</height>
+                     </size>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0" colspan="2">
+                   <widget class="QWidget" name="widget_speed_x" native="true">
+                    <property name="minimumSize">
+                     <size>
+                      <width>300</width>
+                      <height>300</height>
+                     </size>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="3">
+                   <widget class="QLabel" name="label_dir_y">
+                    <property name="text">
+                     <string>正向</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_21">
+                    <property name="text">
+                     <string>X轴线速度</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="QFrame" name="frame_4">
+                  <property name="frameShape">
+                   <enum>QFrame::HLine</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_17"/>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <widget class="QWidget" name="widget" native="true"/>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="tab_8">
+             <attribute name="title">
+              <string>页</string>
+             </attribute>
+             <widget class="QGroupBox" name="groupBox_13">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>451</width>
+                <height>351</height>
+               </rect>
+              </property>
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="title">
+               <string>Logging</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_16">
+               <item row="0" column="0">
+                <layout class="QHBoxLayout" name="horizontalLayout_18">
+                 <item>
+                  <widget class="QLabel" name="label_image">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>200</width>
+                     <height>200</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>200</width>
+                     <height>200</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">border:1px solid black</string>
+                   </property>
+                   <property name="text">
+                    <string>NO IMAGE</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <layout class="QVBoxLayout" name="verticalLayout_20">
+                   <item>
+                    <widget class="QLineEdit" name="lineEdit_image_topic"/>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="pushButton_sub_image">
+                     <property name="text">
+                      <string>订阅</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QTabWidget" name="tabWidget_3">
+            <property name="currentIndex">
+             <number>1</number>
+            </property>
+            <widget class="QWidget" name="tab_6">
+             <attribute name="title">
+              <string>Tab 1</string>
+             </attribute>
+             <layout class="QVBoxLayout" name="verticalLayout_9"/>
+            </widget>
+            <widget class="QWidget" name="tab_7">
+             <attribute name="title">
+              <string>Tab 2</string>
+             </attribute>
+             <widget class="QGroupBox" name="groupBox_4">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>40</y>
+                <width>391</width>
+                <height>131</height>
+               </rect>
+              </property>
+              <property name="title">
+               <string>激光雷达</string>
+              </property>
+              <widget class="QPushButton" name="laser_btn">
+               <property name="geometry">
+                <rect>
+                 <x>20</x>
+                 <y>100</y>
+                 <width>111</width>
+                 <height>25</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>打开激光雷达</string>
+               </property>
+              </widget>
+              <widget class="QTextEdit" name="textEdit_laser_cmd">
+               <property name="geometry">
+                <rect>
+                 <x>20</x>
+                 <y>30</y>
+                 <width>301</width>
+                 <height>51</height>
+                </rect>
+               </property>
+              </widget>
+             </widget>
+             <widget class="QTextEdit" name="textEdit_quick_output">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>280</y>
+                <width>391</width>
+                <height>111</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background:rgb(0, 0, 0)
+</string>
+              </property>
+             </widget>
+            </widget>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>

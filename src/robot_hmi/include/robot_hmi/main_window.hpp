@@ -48,7 +48,7 @@ public Q_SLOTS:
 	** Auto-connections (connectSlotsByName())
 	*******************************************/
 	void on_actionAbout_triggered();
-	void on_button_connect_clicked(bool check );
+        void on_button_connect_clicked();
 	void on_checkbox_use_environment_stateChanged(int state);
 
     /******************************************
@@ -74,13 +74,14 @@ private slots:
     void writeCmd(QString);
 
 private:
-	Ui::MainWindowDesign ui;
-	QNode qnode;
+    Ui::MainWindowDesign ui;
+    QNode qnode;
     CCtrlDashBoard* speed_x_dashBoard;
     CCtrlDashBoard* speed_y_dashBoard;
     QProcess *laser_cmd;
     QProcess* m_proces_bash;
     QProcess* proces_bash;
+    QProcess* proces_camera_bash;
 
 };
 

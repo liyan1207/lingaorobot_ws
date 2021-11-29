@@ -49,7 +49,7 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     ** Auto Start
     **********************/
     if ( ui.checkbox_remember_settings->isChecked() ) {
-        on_button_connect_clicked(true);
+        on_button_connect_clicked();
     }
     connect(ui.horizontalSlider_linera,SIGNAL(valueChanged(int)),this,SLOT(slot_linera_value_change(int)));
     connect(ui.horizontalSlider_raw,SIGNAL(valueChanged(int)),this,SLOT(slot_raw_value_change(int)));
@@ -82,31 +82,29 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
 
 
 
+
+    //开一个终端运行非驱动指令
     m_proces_bash = new QProcess;
     m_proces_bash->start("bash");
     m_proces_bash->waitForStarted();
     connect(m_proces_bash, SIGNAL(readyReadStandardOutput()), this, SLOT(readBashStandardOutputInfo()));
     connect(m_proces_bash, SIGNAL(readyReadStandardError()), this, SLOT(readBashStandardErrorInfo()));
 
-    //另开一个终端运行驱动
-    proces_bash = new QProcess;
-    proces_bash->start("bash");
-    proces_bash->waitForStarted();
-    //启动驱动与 IMU、RTK、融合驱动
-    QString strCmd = "roslaunch lingao_gnss robot.launch";
-    proces_bash->write(strCmd.toLocal8Bit() + '\n');//bash执行命令
+//    //单独开一个终端运行融合驱动
+//    proces_bash = new QProcess;
+//    proces_bash->start("bash");
+//    proces_bash->waitForStarted();
+//    //启动驱动与 IMU、RTK、融合驱动
+//    QString strCmd = "roslaunch lingao_gnss robot.launch";
+//    proces_bash->write(strCmd.toLocal8Bit() + '\n');//bash执行命令
 
-    //复位升降结构Z轴
-    QString strCmdResetZ = "rosservice call /lingao_base/linear_motion_sys_init \"AxisName: 'z'\"";
-    writeCmd(strCmdResetZ);
-    //复位升降结构X轴
-    QString strCmdResetX = "rosservice call /lingao_base/linear_motion_sys_init \"AxisName: 'x'\"";
-    writeCmd(strCmdResetX);
-    //复位相机
-    QString strCmdResetP = "rosservice call /lingao_base/linear_motion_sys_init \"AxisName: 'p'\"";
-    writeCmd(strCmdResetP);
-
-    //监控x、z轴位置
+//    //单独开一个终端运行摄像头驱动
+//    proces_camera_bash= new QProcess;
+//    proces_camera_bash->start("bash");
+//    proces_camera_bash->waitForStarted();
+//    //启动摄像头驱动
+//    QString strCmdCamera = "roslaunch lingao_bringup lingao_camera.launch";
+//    proces_camera_bash->write(strCmd.toLocal8Bit() + '\n');//bash执行命令
 
 }
 void MainWindow::slot_quick_cmd_clicked()
@@ -116,7 +114,6 @@ void MainWindow::slot_quick_cmd_clicked()
     laser_cmd->write(ui.textEdit_laser_cmd->toPlainText().toLocal8Bit()+'\n');
     connect(laser_cmd,SIGNAL(readyReadStandardError()),this,SLOT(slot_quick_output()));
     connect(laser_cmd,SIGNAL(readyReadStandardOutput()),this,SLOT(slot_quick_output()));
-
 }
 void MainWindow::slot_quick_output()
 {
@@ -144,7 +141,6 @@ void MainWindow::slot_update_dashboard(float x,float y)
     ui.label_dir_y->setText(y>0?"正向":"反向");
     speed_x_dashBoard->setValue(abs(x)*100);
     speed_y_dashBoard->setValue(abs(y)*100);
-
 }
 void MainWindow::slot_pushbtn_click()
 {
@@ -205,10 +201,10 @@ void MainWindow::showNoMasterMessage() {
 /*
  * These triggers whenever the button is clicked, regardless of whether it
  * is already checked or not.
+ * 连接设备
  */
-
-void MainWindow::on_button_connect_clicked(bool check ) {
-	if ( ui.checkbox_use_environment->isChecked() ) {
+void MainWindow::on_button_connect_clicked() {
+  if ( ui.checkbox_use_environment->isChecked() ) { //使用环境变量
 		if ( !qnode.init() ) {
 			showNoMasterMessage();
 		} else {
@@ -216,13 +212,28 @@ void MainWindow::on_button_connect_clicked(bool check ) {
 		}
 	} else {
 		if ( ! qnode.init(ui.line_edit_master->text().toStdString(),
-				   ui.line_edit_host->text().toStdString()) ) {
+           ui.line_edit_host->text().toStdString()) ) { // ros master 连接失败
 			showNoMasterMessage();
-		} else {
+    } else { // ros master 连接成功
 			ui.button_connect->setEnabled(false);
 			ui.line_edit_master->setReadOnly(true);
 			ui.line_edit_host->setReadOnly(true);
 			ui.line_edit_topic->setReadOnly(true);
+
+      //小车上位机已经运行驱动
+      //复位升降结构Z轴
+      QString strCmdResetZ = "rosservice call /lingao_base/linear_motion_sys_init \"AxisName: 'z'\"";
+      writeCmd(strCmdResetZ);
+      //复位升降结构X轴
+      QString strCmdResetX = "rosservice call /lingao_base/linear_motion_sys_init \"AxisName: 'x'\"";
+      writeCmd(strCmdResetX);
+      //复位相机
+      QString strCmdResetP = "rosservice call /lingao_base/linear_motion_sys_init \"AxisName: 'p'\"";
+      writeCmd(strCmdResetP);
+
+      //监控x、z轴位置
+
+
 		}
 	}
 }
@@ -305,6 +316,12 @@ void MainWindow::closeEvent(QCloseEvent *event)
 }
 
 }  // namespace robot_hmi
+
+
+
+
+
+
 
 
 /**
