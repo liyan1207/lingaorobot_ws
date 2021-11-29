@@ -75,6 +75,7 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     //connectsaf
     connect(&qnode,SIGNAL(speed_vel(float,float)),this,SLOT(slot_update_dashboard(float,float)));
     connect(&qnode,SIGNAL(power_vel(float)),this,SLOT(slot_update_power(float)));
+
     connect(&qnode,SIGNAL(image_val(QImage)),this,SLOT(slot_update_image(QImage)));
     connect(ui.pushButton_sub_image,SIGNAL(clicked()),this,SLOT(slot_sub_image()));
 
@@ -123,6 +124,13 @@ void MainWindow::slot_quick_output()
 void MainWindow::slot_update_image(QImage im)
 {
     ui.label_image->setPixmap(QPixmap::fromImage(im));
+
+//    ui.label_image1->setPixmap(QPixmap::fromImage(im));
+
+//    ui.label_image2->setPixmap(QPixmap::fromImage(im));
+
+//    ui.label_image3->setPixmap(QPixmap::fromImage(im));
+
 }
 void MainWindow::slot_sub_image()
 {
@@ -315,7 +323,6 @@ void MainWindow::closeEvent(QCloseEvent *event)
 	QMainWindow::closeEvent(event);
 }
 
-}  // namespace robot_hmi
 
 
 
@@ -426,3 +433,23 @@ void robot_hmi::MainWindow::writeCmd(QString strCmd)
   m_proces_bash->write(strCmd.toLocal8Bit() + '\n');//bash执行命令
 }
 
+
+void robot_hmi::MainWindow::on_tabWidget_2_currentChanged(int index)
+{
+  //0123  label_image3
+
+//  QString str1 = "/camera1/image_raw";
+//  QString str2 = "/camera2/image_raw";
+//  QString str3 = "/camera3/image_raw";
+
+
+//  qnode.sub_image(str1);
+//  qnode.sub_image(str2);
+//  qnode.sub_image(str3);
+
+
+
+  //QMessageBox::information(NULL, "index", QString::fromStdString(std::to_string(index)));
+}
+
+}  // namespace robot_hmi

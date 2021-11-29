@@ -73,6 +73,8 @@ private slots:
     void readBashStandardErrorInfo();
     void writeCmd(QString);
 
+    void on_tabWidget_2_currentChanged(int index);
+
 private:
     Ui::MainWindowDesign ui;
     QNode qnode;
