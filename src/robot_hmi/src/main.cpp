@@ -24,7 +24,7 @@ int main(int argc, char **argv) {
     **********************/
     QApplication app(argc, argv);
     robot_hmi::MainWindow w(argc,argv);
-    w.show();
+    w.showMaximized();
     app.connect(&app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()));
     int result = app.exec();
 

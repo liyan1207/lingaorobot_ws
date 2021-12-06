@@ -78,16 +78,22 @@ private slots:
     void writeCmd(QString);
     void connectEquipment();
 
+    void on_pushBtn_inithard_clicked();
+
+    void on_pushBtn_initcamera_clicked();
+
+    void on_pushBtn_initlaser_clicked();
+
 private:
     Ui::MainWindowDesign ui;
     QNode qnode;
-    CCtrlDashBoard* speed_x_dashBoard;
-    CCtrlDashBoard* speed_y_dashBoard;
     QProcess *laser_cmd;
     QProcess* m_proces_bash;
     QProcess* proces_bash;
     QProcess* proces_camera_bash;
 //    DialogConnectDevice *connectdev;
+    //    CCtrlDashBoard* speed_x_dashBoard;
+    //    CCtrlDashBoard* speed_y_dashBoard;
 
 };
 
