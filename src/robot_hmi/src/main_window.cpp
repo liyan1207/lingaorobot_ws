@@ -15,6 +15,9 @@
 #include "../include/robot_hmi/main_window.hpp"
 #include <QScrollBar>
 
+//#include "dialogconnectdevice.h"
+//#include "ui_dialogconnectdevice.h"
+
 /*****************************************************************************
 ** Namespaces
 *****************************************************************************/
@@ -33,6 +36,8 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
 {
 	ui.setupUi(this); // Calling this incidentally connects all ui's triggers to on_...() callbacks in this class.
     QObject::connect(ui.actionAbout_Qt, SIGNAL(triggered(bool)), qApp, SLOT(aboutQt())); // qApp is a global variable for the application
+
+    QObject::connect(ui.actionconnect, SIGNAL(triggered()), this, SLOT(connectEquipment()));
 
     ReadSettings();
 	setWindowIcon(QIcon(":/images/icon.png"));
@@ -221,6 +226,8 @@ void MainWindow::on_button_connect_clicked() {
 			ui.line_edit_topic->setReadOnly(true);
 
       //小车上位机已经运行驱动
+      QString strCmdsource = "source ~/lingao_ws/devel/setup.bash";
+      writeCmd(strCmdsource);
       //复位升降结构Z轴
       QString strCmdResetZ = "rosservice call /lingao_base/linear_motion_sys_init \"AxisName: 'z'\"";
       writeCmd(strCmdResetZ);
@@ -230,10 +237,6 @@ void MainWindow::on_button_connect_clicked() {
       //复位相机
       QString strCmdResetP = "rosservice call /lingao_base/linear_motion_sys_init \"AxisName: 'p'\"";
       writeCmd(strCmdResetP);
-
-      //监控x、z轴位置
-
-
 		}
 	}
 }
@@ -306,7 +309,6 @@ void MainWindow::WriteSettings() {
     settings.setValue("geometry", saveGeometry());
     settings.setValue("windowState", saveState());
     settings.setValue("remember_settings",QVariant(ui.checkbox_remember_settings->isChecked()));
-
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
@@ -315,7 +317,6 @@ void MainWindow::closeEvent(QCloseEvent *event)
 	QMainWindow::closeEvent(event);
 }
 
-}  // namespace robot_hmi
 
 
 
@@ -352,21 +353,38 @@ void robot_hmi::MainWindow::readBashStandardErrorInfo()
   scroll->setSliderPosition(scroll->maximum());//光标定位到最后一行
 }
 
+QString getmulti(QString str)
+{
+  double x = str.toDouble() * 10;
+  QString strre = QString::number(x);
+
+  return strre;
+}
+
 /**
  * @brief MainWindow::on_pushBtn_okx_clicked
  * 设置x轴位置
  */
 void robot_hmi::MainWindow::on_pushBtn_okx_clicked()
 {
+  QString strCmdsource = "source ~/lingao_ws/devel/setup.bash";
+  writeCmd(strCmdsource);
+
   QString strCmd = "rosservice call /lingao_base/linear_motion_sys_set \"AxisName: 'x'";
   writeCmd(strCmd);
 
-  QString strx = ui.spinBox_x->text();
+  QString strx = ui.doubleSpinBox_y->text();
+
+  strx = getmulti(strx);
+
   strCmd = "distance: ";
   strCmd.append(strx);
   writeCmd(strCmd);
 
-  QString strxspeed = ui.spinBox_xspeed->text();
+  QString strxspeed = ui.doubleSpinBox_ys->text();
+
+  strxspeed = getmulti(strxspeed);
+
   strCmd = "speed: ";
   strCmd.append(strxspeed);
   strCmd.append("\""); //命令内容
@@ -379,15 +397,24 @@ void robot_hmi::MainWindow::on_pushBtn_okx_clicked()
  */
 void robot_hmi::MainWindow::on_pushBtn_okz_clicked()
 {
+  QString strCmdsource = "source ~/lingao_ws/devel/setup.bash";
+  writeCmd(strCmdsource);
+
   QString strCmd = "rosservice call /lingao_base/linear_motion_sys_set \"AxisName: 'z'";
   writeCmd(strCmd);
 
-  QString strz = ui.spinBox_z->text();
+  QString strz = ui.doubleSpinBox_z->text();
+
+  strz = getmulti(strz);
+
   strCmd = "distance: ";
   strCmd.append(strz);
   writeCmd(strCmd);
 
-  QString strzspeed = ui.spinBox_zspeed->text();
+  QString strzspeed = ui.doubleSpinBox_zs->text();
+
+  strzspeed = getmulti(strzspeed);
+
   strCmd = "speed: ";
   strCmd.append(strzspeed);
   strCmd.append("\""); //命令内容
@@ -400,15 +427,20 @@ void robot_hmi::MainWindow::on_pushBtn_okz_clicked()
  */
 void robot_hmi::MainWindow::on_pushBtn_okcamera_clicked()
 {
+  QString strCmdsource = "source ~/lingao_ws/devel/setup.bash";
+  writeCmd(strCmdsource);
+
   QString strCmd = "rosservice call /lingao_base/linear_motion_sys_set \"AxisName: 'p'";
   writeCmd(strCmd);
 
   QString strcamera = ui.spinBox_camera->text();
+
   strCmd = "distance: ";
   strCmd.append(strcamera);
   writeCmd(strCmd);
 
   QString strcameraspeed = ui.spinBox_cameraspeed->text();
+
   strCmd = "speed: ";
   strCmd.append(strcameraspeed);
   strCmd.append("\""); //命令内容
@@ -426,3 +458,10 @@ void robot_hmi::MainWindow::writeCmd(QString strCmd)
   m_proces_bash->write(strCmd.toLocal8Bit() + '\n');//bash执行命令
 }
 
+void MainWindow::connectEquipment()
+{
+//  connectdev = new DialogConnectDevice(NULL);
+//  connectdev->show();
+}
+
+}  // namespace robot_hmi

@@ -18,6 +18,10 @@
 #include "CCtrlDashBoard.h"
 #include <QImage>
 #include <QProcess>
+
+//#include "dialogconnectdevice.h"
+//#include "ui_dialogconnectdevice.h"
+
 /*****************************************************************************
 ** Namespace
 *****************************************************************************/
@@ -72,6 +76,7 @@ private slots:
     void readBashStandardOutputInfo();
     void readBashStandardErrorInfo();
     void writeCmd(QString);
+    void connectEquipment();
 
 private:
     Ui::MainWindowDesign ui;
@@ -82,6 +87,7 @@ private:
     QProcess* m_proces_bash;
     QProcess* proces_bash;
     QProcess* proces_camera_bash;
+//    DialogConnectDevice *connectdev;
 
 };
 
