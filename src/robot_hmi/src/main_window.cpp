@@ -72,13 +72,17 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
 //    speed_y_dashBoard->setGeometry(ui.widget_speed_y->rect());
 //    speed_x_dashBoard->setValue(0);
 //    speed_y_dashBoard->setValue(0);
-    ui.horizontalSlider_linera->setValue(50);
-    ui.horizontalSlider_raw->setValue(50);
+    ui.horizontalSlider_linera->setValue(10);
+    ui.horizontalSlider_raw->setValue(10);
 
     //connectsaf
 //    connect(&qnode,SIGNAL(speed_vel(float,float)),this,SLOT(slot_update_dashboard(float,float)));
     connect(&qnode,SIGNAL(power_vel(float)),this,SLOT(slot_update_power(float)));
     connect(&qnode,SIGNAL(image_val(QImage)),this,SLOT(slot_update_image(QImage)));
+    connect(&qnode,SIGNAL(image_val0(QImage)),this,SLOT(slot_show_image0(QImage)));
+    connect(&qnode,SIGNAL(image_val1(QImage)),this,SLOT(slot_show_image1(QImage)));
+    connect(&qnode,SIGNAL(image_val2(QImage)),this,SLOT(slot_show_image2(QImage)));
+
     connect(ui.pushButton_sub_image,SIGNAL(clicked()),this,SLOT(slot_sub_image()));
     connect(ui.laser_btn,SIGNAL(clicked()),this,SLOT(slot_quick_cmd_clicked()));
 
@@ -88,37 +92,29 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
     m_proces_bash->waitForStarted();
     connect(m_proces_bash, SIGNAL(readyReadStandardOutput()), this, SLOT(readBashStandardOutputInfo()));
     connect(m_proces_bash, SIGNAL(readyReadStandardError()), this, SLOT(readBashStandardErrorInfo()));
-
-    laser_cmd=new QProcess;
-    laser_cmd->start("bash");
-    laser_cmd->waitForStarted();
-    connect(laser_cmd,SIGNAL(readyReadStandardError()),this,SLOT(slot_quick_output()));
-    connect(laser_cmd,SIGNAL(readyReadStandardOutput()),this,SLOT(slot_quick_output()));
-
 }
 
-void MainWindow::slot_quick_cmd_clicked()
-{
-    ui.textEdit_initoutput->append("<font color=\"#FFFFFF\">Linux:~$ "+ui.textEdit_laser_cmd->toPlainText()+"</font>");//显示命令
-    laser_cmd->write(ui.textEdit_laser_cmd->toPlainText().toLocal8Bit()+'\n');
-}
-
-/**
- * @brief MainWindow::slot_quick_output
- * 显示初始化信息
- */
-void MainWindow::slot_quick_output()
-{
-    ui.textEdit_initoutput->append("<font color=\"#FF0000\">"+laser_cmd->readAllStandardError()+"</font>");
-    ui.textEdit_initoutput->append("<font color=\"#FFFFFF\">"+laser_cmd->readAllStandardOutput()+"</font>");
-}
 void MainWindow::slot_update_image(QImage im)
 {
     ui.label_image->setPixmap(QPixmap::fromImage(im));
 }
+
+void MainWindow::slot_show_image0(QImage im0)
+{
+    ui.label_image0->setPixmap(QPixmap::fromImage(im0));
+}
+void MainWindow::slot_show_image1(QImage im1)
+{
+    ui.label_image1->setPixmap(QPixmap::fromImage(im1));
+}
+void MainWindow::slot_show_image2(QImage im2)
+{
+    ui.label_image2->setPixmap(QPixmap::fromImage(im2));
+}
+
 void MainWindow::slot_sub_image()
 {
-    qnode.sub_image(ui.lineEdit_image_topic->text());
+//    qnode.sub_image(ui.lineEdit_image_topic->text());
 }
 void MainWindow::slot_update_power(float value)
 {
@@ -138,7 +134,7 @@ void MainWindow::slot_pushbtn_click()
 {
   QPushButton* btn=qobject_cast<QPushButton*> (sender());
   char k=btn->text().toStdString()[0];
-  bool is_all=ui.checkBox_is_all->isChecked();
+  bool is_all=false;//ui.checkBox_is_all->isChecked();
   float linear=ui.label_linera->text().toFloat()*0.01;
   float angular=ui.label_raw->text().toFloat()*0.01;
 
@@ -216,19 +212,6 @@ void MainWindow::on_button_connect_clicked() {
 			ui.line_edit_master->setReadOnly(true);
 			ui.line_edit_host->setReadOnly(true);
 //			ui.line_edit_topic->setReadOnly(true);
-
-      //小车上位机已经运行驱动
-      QString strCmdsource = "source ~/lingao_ws/devel/setup.bash";
-      writeCmd(strCmdsource);
-      //复位升降结构Z轴
-      QString strCmdResetZ = "rosservice call /lingao_base/linear_motion_sys_init \"AxisName: 'z'\"";
-      writeCmd(strCmdResetZ);
-      //复位升降结构X轴
-      QString strCmdResetX = "rosservice call /lingao_base/linear_motion_sys_init \"AxisName: 'x'\"";
-      writeCmd(strCmdResetX);
-      //复位相机
-      QString strCmdResetP = "rosservice call /lingao_base/linear_motion_sys_init \"AxisName: 'p'\"";
-      writeCmd(strCmdResetP);
     }
 	}
 }
@@ -455,26 +438,123 @@ void MainWindow::connectEquipment()
 //  connectdev->show();
 }
 
+void MainWindow::slot_quick_cmd_clicked()
+{
+  laser_cmd=new QProcess;
+  laser_cmd->start("bash");
+  ui.textEdit_initoutput->append("<font color=\"#FFFFFF\">Linux:~$ "+ui.textEdit_laser_cmd->toPlainText()+"</font>");//显示命令
+  laser_cmd->write(ui.textEdit_laser_cmd->toPlainText().toLocal8Bit()+'\n');
+  connect(laser_cmd,SIGNAL(readyReadStandardError()),this,SLOT(slot_quick_output()));
+  connect(laser_cmd,SIGNAL(readyReadStandardOutput()),this,SLOT(slot_quick_output()));
+}
+
+/**
+ * @brief MainWindow::slot_quick_output
+ * 显示初始化信息
+ */
+void MainWindow::slot_quick_output()
+{
+    ui.textEdit_initoutput->append("<font color=\"#FF0000\">"+laser_cmd->readAllStandardError()+"</font>");
+    ui.textEdit_initoutput->append("<font color=\"#FFFFFF\">"+laser_cmd->readAllStandardOutput()+"</font>");
+}
+
+
+
 /**
  * 初始化后接收显示返回信息
  */
 void robot_hmi::MainWindow::on_pushBtn_inithard_clicked()
 {  
+  proces_hard=new QProcess;
+  proces_hard->start("bash");
   ui.textEdit_initoutput->append("<font color=\"#FFFFFF\">Linux:~$ "+ui.textEdit_inithard->toPlainText()+"</font>");//显示命令
-  laser_cmd->write(ui.textEdit_inithard->toPlainText().toLocal8Bit()+'\n');
+  proces_hard->write(ui.textEdit_inithard->toPlainText().toLocal8Bit()+'\n');
+  connect(proces_hard,SIGNAL(readyReadStandardError()),this,SLOT(slot_inithard_output()));
+  connect(proces_hard,SIGNAL(readyReadStandardOutput()),this,SLOT(slot_inithard_output()));
+
+  //小车上位机已经运行驱动
+  QString strCmdsource = "source ~/lingao_ws/devel/setup.bash";
+  writeCmd(strCmdsource);
+  //复位升降结构Z轴
+  QString strCmdResetZ = "rosservice call /lingao_base/linear_motion_sys_init \"AxisName: 'z'\"";
+  writeCmd(strCmdResetZ);
+  //复位升降结构X轴
+  QString strCmdResetX = "rosservice call /lingao_base/linear_motion_sys_init \"AxisName: 'x'\"";
+  writeCmd(strCmdResetX);
+}
+
+void MainWindow::slot_inithard_output()
+{
+    ui.textEdit_initoutput->append("<font color=\"#FF0000\">"+proces_hard->readAllStandardError()+"</font>");
+    ui.textEdit_initoutput->append("<font color=\"#FFFFFF\">"+proces_hard->readAllStandardOutput()+"</font>");
 }
 
 void robot_hmi::MainWindow::on_pushBtn_initcamera_clicked()
 {
+  proces_camera=new QProcess;
+  proces_camera->start("bash");
   ui.textEdit_initoutput->append("<font color=\"#FFFFFF\">Linux:~$ "+ui.textEdit_initcamera->toPlainText()+"</font>");//显示命令
-  laser_cmd->write(ui.textEdit_initcamera->toPlainText().toLocal8Bit()+'\n');
+  proces_camera->write(ui.textEdit_initcamera->toPlainText().toLocal8Bit()+'\n');
+  connect(proces_camera,SIGNAL(readyReadStandardError()),this,SLOT(slot_initcamera_output()));
+  connect(proces_camera,SIGNAL(readyReadStandardOutput()),this,SLOT(slot_initcamera_output()));
+
+  //小车上位机已经运行驱动
+  QString strCmdsource = "source ~/lingao_ws/devel/setup.bash";
+  writeCmd(strCmdsource);
+  //复位相机
+  QString strCmdResetP = "rosservice call /lingao_base/linear_motion_sys_init \"AxisName: 'p'\"";
+  writeCmd(strCmdResetP);
+}
+
+void MainWindow::slot_initcamera_output()
+{
+    ui.textEdit_initoutput->append("<font color=\"#FF0000\">"+proces_camera->readAllStandardError()+"</font>");
+    ui.textEdit_initoutput->append("<font color=\"#FFFFFF\">"+proces_camera->readAllStandardOutput()+"</font>");
 }
 
 void robot_hmi::MainWindow::on_pushBtn_initlaser_clicked()
 {
+  proces_laser=new QProcess;
+  proces_laser->start("bash");
   ui.textEdit_initoutput->append("<font color=\"#FFFFFF\">Linux:~$ "+ui.textEdit_initlaser->toPlainText()+"</font>");//显示命令
-  laser_cmd->write(ui.textEdit_initlaser->toPlainText().toLocal8Bit()+'\n');
+  proces_laser->write(ui.textEdit_initlaser->toPlainText().toLocal8Bit()+'\n');
+  connect(proces_laser,SIGNAL(readyReadStandardError()),this,SLOT(slot_initlaser_output()));
+  connect(proces_laser,SIGNAL(readyReadStandardOutput()),this,SLOT(slot_initlaser_output()));
+}
+
+void MainWindow::slot_initlaser_output()
+{
+    ui.textEdit_initoutput->append("<font color=\"#FF0000\">"+proces_laser->readAllStandardError()+"</font>");
+    ui.textEdit_initoutput->append("<font color=\"#FFFFFF\">"+proces_laser->readAllStandardOutput()+"</font>");
 }
 
 }  // namespace robot_hmi
 
+/**
+ * @brief robot_hmi::MainWindow::on_pushBtn_stop_clicked
+ * 急停
+ */
+void robot_hmi::MainWindow::on_pushBtn_stop_clicked()
+{
+  qnode.set_cmd_vel('I',0,0);
+}
+
+void robot_hmi::MainWindow::on_quit_button_clicked()
+{
+
+}
+
+void robot_hmi::MainWindow::on_pushButton_camera0_clicked()
+{
+  qnode.sub_image0(topic_name0);
+}
+
+void robot_hmi::MainWindow::on_pushButton_camera1_clicked()
+{
+  qnode.sub_image1(topic_name1);
+}
+
+void robot_hmi::MainWindow::on_pushButton_camera2_clicked()
+{
+  qnode.sub_image2(topic_name2);
+}

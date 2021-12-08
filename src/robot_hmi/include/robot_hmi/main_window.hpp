@@ -46,6 +46,9 @@ public:
 
 	void closeEvent(QCloseEvent *event); // Overloaded function
 	void showNoMasterMessage();
+  QString topic_name0="/camera1/image_raw";
+  QString topic_name1="/camera2/image_raw";
+  QString topic_name2="/camera3/image_raw";
 
 public Q_SLOTS:
 	/******************************************
@@ -68,6 +71,12 @@ public Q_SLOTS:
     void slot_sub_image();
     void slot_quick_cmd_clicked();
     void slot_quick_output();
+    void slot_inithard_output();
+    void slot_initcamera_output();
+    void slot_initlaser_output();
+    void slot_show_image0(QImage);
+    void slot_show_image1(QImage);
+    void slot_show_image2(QImage);
 
 private slots:
     void on_pushBtn_okx_clicked();
@@ -77,20 +86,27 @@ private slots:
     void readBashStandardErrorInfo();
     void writeCmd(QString);
     void connectEquipment();
-
     void on_pushBtn_inithard_clicked();
-
     void on_pushBtn_initcamera_clicked();
-
     void on_pushBtn_initlaser_clicked();
+    void on_pushBtn_stop_clicked();
+
+    void on_quit_button_clicked();
+
+    void on_pushButton_camera0_clicked();
+
+    void on_pushButton_camera1_clicked();
+
+    void on_pushButton_camera2_clicked();
 
 private:
     Ui::MainWindowDesign ui;
     QNode qnode;
     QProcess *laser_cmd;
     QProcess* m_proces_bash;
-    QProcess* proces_bash;
-    QProcess* proces_camera_bash;
+    QProcess* proces_laser;
+    QProcess* proces_hard;
+    QProcess* proces_camera;
 //    DialogConnectDevice *connectdev;
     //    CCtrlDashBoard* speed_x_dashBoard;
     //    CCtrlDashBoard* speed_y_dashBoard;

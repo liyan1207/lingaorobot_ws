@@ -77,26 +77,61 @@ bool QNode::init(const std::string &master_url, const std::string &host_url) {
 	start();
 	return true;
 }
-void QNode::sub_image(QString topic_name)
+void QNode::sub_image0(QString topic_name0)
 {
     ros::NodeHandle n;
     image_transport::ImageTransport it_(n);
-    image_sub=it_.subscribe(topic_name.toStdString(),1000,&QNode::image_callback,this);
-
+    image0_sub=n.subscribe(topic_name0.toStdString(),1000,&QNode::image_callback0,this);
 }
-void QNode::image_callback(const sensor_msgs::ImageConstPtr &msg)
+void QNode::sub_image1(QString topic_name1)
+{
+    ros::NodeHandle n;
+    image_transport::ImageTransport it_(n);
+    image1_sub=n.subscribe(topic_name1.toStdString(),1000,&QNode::image_callback1,this);
+}
+void QNode::sub_image2(QString topic_name2)
+{
+    ros::NodeHandle n;
+    image_transport::ImageTransport it_(n);
+    image2_sub=n.subscribe(topic_name2.toStdString(),1000,&QNode::image_callback2,this);
+}
+void QNode::image_callback0(const sensor_msgs::ImageConstPtr &msg)
 {
   QT_TRY{
-
-    cv_bridge::CvImagePtr cv_ptr;
-    cv_ptr=cv_bridge::toCvCopy(msg,msg->encoding);
-    QImage im=Mat2QImage(cv_ptr->image);
-    emit image_val(im);
-  }
-  QT_CATCH(Except ex){
-    QT_THROW(ex);
-  }
+     cv_bridge::CvImagePtr cv_ptr;
+     cv_ptr=cv_bridge::toCvCopy(msg,msg->encoding);
+     QImage im0=Mat2QImage(cv_ptr->image);
+     emit image_val0(im0);
+     }
+     QT_CATCH(Except ex){
+         QT_THROW(ex);
+     }
 }
+void QNode::image_callback1(const sensor_msgs::ImageConstPtr &msg)
+{
+  QT_TRY{
+     cv_bridge::CvImagePtr cv_ptr;
+     cv_ptr=cv_bridge::toCvCopy(msg,msg->encoding);
+     QImage im1=Mat2QImage(cv_ptr->image);
+     emit image_val1(im1);
+     }
+     QT_CATCH(Except ex){
+         QT_THROW(ex);
+     }
+}
+void QNode::image_callback2(const sensor_msgs::ImageConstPtr &msg)
+{
+  QT_TRY{
+     cv_bridge::CvImagePtr cv_ptr;
+     cv_ptr=cv_bridge::toCvCopy(msg,msg->encoding);
+     QImage im2=Mat2QImage(cv_ptr->image);
+     emit image_val2(im2);
+     }
+     QT_CATCH(Except ex){
+         QT_THROW(ex);
+     }
+}
+
 QImage QNode::Mat2QImage(cv::Mat const& src)
 {
   QImage dest(src.cols, src.rows, QImage::Format_ARGB32);
