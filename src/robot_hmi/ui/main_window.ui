@@ -1701,20 +1701,7 @@ font:14pt;</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="1">
-         <widget class="QLabel" name="label_50">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1" colspan="2">
+        <item row="4" column="2" colspan="2">
          <widget class="QGroupBox" name="groupBox_11">
           <property name="title">
            <string>系统日志</string>
@@ -1733,39 +1720,30 @@ font:14pt;</string>
           </layout>
          </widget>
         </item>
-        <item row="4" column="3">
-         <widget class="QPushButton" name="pushBtn_stop_2">
+        <item row="4" column="1">
+         <widget class="QLabel" name="label_imagergboper">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="2">
+         <widget class="QLabel" name="label_50">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="minimumSize">
-           <size>
-            <width>150</width>
-            <height>150</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>150</width>
-            <height>150</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>16</pointsize>
-           </font>
-          </property>
-          <property name="layoutDirection">
-           <enum>Qt::LeftToRight</enum>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color: rgb(164, 0, 0);</string>
-          </property>
           <property name="text">
-           <string>急停</string>
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QPushButton" name="pushBtn_rgboper">
+          <property name="text">
+           <string>R+1/3G+1/3B</string>
           </property>
          </widget>
         </item>

@@ -77,6 +77,7 @@ public Q_SLOTS:
     void slot_show_image0(QImage);
     void slot_show_image1(QImage);
     void slot_show_image2(QImage);
+    void Blue(QImage img, QLabel *imgLabel,  QString chanel);
 
 private slots:
     void on_pushBtn_okx_clicked();
@@ -90,14 +91,12 @@ private slots:
     void on_pushBtn_initcamera_clicked();
     void on_pushBtn_initlaser_clicked();
     void on_pushBtn_stop_clicked();
-
     void on_quit_button_clicked();
-
     void on_pushButton_camera0_clicked();
-
     void on_pushButton_camera1_clicked();
-
     void on_pushButton_camera2_clicked();
+
+    void on_pushBtn_rgboper_clicked();
 
 private:
     Ui::MainWindowDesign ui;

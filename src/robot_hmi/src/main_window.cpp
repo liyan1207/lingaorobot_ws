@@ -15,6 +15,9 @@
 #include "../include/robot_hmi/main_window.hpp"
 #include <QScrollBar>
 
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
+
 /*****************************************************************************
 ** Namespaces
 *****************************************************************************/
@@ -528,7 +531,6 @@ void MainWindow::slot_initlaser_output()
     ui.textEdit_initoutput->append("<font color=\"#FFFFFF\">"+proces_laser->readAllStandardOutput()+"</font>");
 }
 
-}  // namespace robot_hmi
 
 /**
  * @brief robot_hmi::MainWindow::on_pushBtn_stop_clicked
@@ -558,3 +560,99 @@ void robot_hmi::MainWindow::on_pushButton_camera2_clicked()
 {
   qnode.sub_image2(topic_name2);
 }
+
+void robot_hmi::MainWindow::on_pushBtn_rgboper_clicked()
+{
+  QImage img1;
+  img1.load ("/home/y/图片/testrgboper.png");                                        // 加载当前图像
+  QPixmap pixmap(QPixmap::fromImage (img1));               // 转为Pixmap图
+  ui.label_image0->setPixmap (pixmap);                           // 显示当前图像
+
+  QImage img = ui.label_image0->pixmap()->toImage();    // 获取RGB相机的图像
+
+
+
+  Blue(img, ui.label_imagergboper, "b");
+}
+
+
+//void split_gray(Mat src)
+//{
+//  int size = src.rows * src.cols * 3;
+//  Mat b(src.rows, src.cols, CV_8UC1);
+//  Mat g(src.rows, src.cols, CV_8UC1);
+//  Mat r(src.rows, src.cols, CV_8UC1);
+
+//  Mat out[] = {b, g, r};
+//  split(src, out);
+
+//  for(int i=0; i<size; i+=3)
+//  {
+//    b.data[i/3] = src.data[i];
+//    g.data[i/3] = src.data[i+1];
+//    r.data[i/3] = src.data[i+2];
+//  }
+
+//  imshow("b", b);
+//  imshow("g", g);
+//  imshow("r", r);
+//}
+
+/***************************************
+ Function: Channel::Blue(QImage img, QLabel *imgLabel)
+ Description: 提取蓝色分量
+ Called By: MainWindow::channelBlue()
+ Input: 当前图像路径Path，图像显示框imgLabel
+ Output: "提取蓝色分量"
+ Return: 当前图像路径Path，图像显示框imgLabel
+ Others: 提取通道赋原值，其余通道置0
+***************************************/
+void robot_hmi::MainWindow::Blue(QImage img, QLabel *imgLabel, QString chanel)
+{
+    unsigned char *redData;                                // 定义字符型指针数组用于存储分量数据
+    unsigned char *greenData;
+    unsigned char *blueData;
+
+    unsigned char *data = img.bits ();                      // 指向当前图像第一个像素
+    int width = img.width ();                               // 图像宽度
+    int height = img.height ();                             // 图像高度
+    int bytePerLine = img.bytesPerLine();                   // 图像每行字节数
+
+    redData = new unsigned char [bytePerLine * height];    // 设置数组大小
+    greenData = new unsigned char [bytePerLine * height];
+    blueData = new unsigned char [bytePerLine * height];
+
+    unsigned char red = 0;                                 // 分量
+    unsigned char green = 0;
+    unsigned char blue = 0;
+    for (int i = 0; i < height; i++)                        // 遍历每一行
+    {
+        for ( int j = 0; j < width; j++ )                   // 遍历每一列
+        {
+            red = *(data);                                 // 获取当前像素点分量
+            green = *(data+1);
+            blue = *(data+2);
+
+            redData[i * bytePerLine + j * 3] = red;
+            greenData[i * bytePerLine + j * 3]=green;
+            blueData[i * bytePerLine + j * 3]=blue;       // 通道赋原值
+
+            data += 1;                                      // 更新至下一像素点
+        }
+    }
+
+    QImage redImage(redData, width, height, bytePerLine, QImage::Format_Grayscale8);
+    QPixmap pixmapred(QPixmap::fromImage (redImage));        // 更新图像窗口
+    ui.label_imagergboper->setPixmap (pixmapred);                          // 显示灰度图像
+
+    QImage greenImage(greenData, width, height, bytePerLine, QImage::Format_Grayscale8);
+    QPixmap pixmapgreen(QPixmap::fromImage (greenImage));        // 更新图像窗口
+    ui.label_image1->setPixmap (pixmapgreen);                          // 显示灰度图像
+
+    QImage blueImage(blueData, width, height, bytePerLine, QImage::Format_Grayscale8);
+    QPixmap pixmap2(QPixmap::fromImage (blueImage));        // 更新图像窗口
+    ui.label_image2->setPixmap (pixmap2);                          // 显示灰度图像
+}
+
+
+}  // namespace robot_hmi
